@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snipe.dao.CarInfoDao">
+    <sql id="base_column">
+        carno,type,producedate,price
+    </sql>
+
+    <!--  批量插入信息  -->
+    <insert id="insertBatch"  parameterType="java.util.List">
+        insert into carinfo (carno,type,producedate,price)
+        values
+        <foreach collection="list" item="car" index="index" separator="," >
+            (#{car.carNo},#{car.type},#{car.produceDate},#{car.price})
+        </foreach>
+    </insert>
+
+    <!-- 查询全部车辆信息 -->
+    <select id="getCarInfo" resultType="com.snipe.entity.CarInfo">
+        SELECT <include refid="base_column"></include> FROM carinfo
+    </select>
+
+</mapper>

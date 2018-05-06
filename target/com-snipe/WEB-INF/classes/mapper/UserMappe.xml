@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snipe.dao.UserDao">
+    <!-- 查找所有用户 -->
+    <select id="getAll" resultType="com.snipe.entity.User" >
+        <!-- 具体的sql -->
+        SELECT id,username,password,address,account,age,status FROM user
+    </select>
+    <!-- 通过ID查询用户 -->
+    <select id="getById" resultType="com.snipe.entity.User">
+        SELECT id,username,password,address,account,age,status
+          FROM user
+        WHERE id = #{id}
+    </select>
+    <!-- 通过账户和密码查询用户 -->
+    <select id="getByAccountAndPassword" resultType="com.snipe.entity.User">
+        SELECT id,username,password,address,account,age,status
+          FROM user
+        WHERE account = #{account} AND password = #{password} AND status = '1'
+    </select>
+    <!-- 添加用户 -->
+    <insert id="save" parameterType="com.snipe.entity.User">
+        INSERT  INTO user(username,account,password,age,address,status)
+        VALUES (#{username},#{account},#{password},#{age},#{address},#{status})
+    </insert>
+    <!-- 更新用户 -->
+    <update id="update" parameterType="com.snipe.entity.User">
+    UPDATE user
+    <set>
+        <if test="username != null" >
+            username = #{username},
+        </if>
+        <if test="password != null">
+            password = #{password},
+        </if>
+        <if test="address != null">
+            address = #{address},
+        </if>
+        <if test="age != null">
+            age = #{age},
+        </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+    <!-- 逻辑删除用户 -->
+    <update id="deleteByStatus">
+        UPDATE user SET status = #{status} WHERE id = #{id}
+    </update>
+    <!--删除用户-->
+    <delete id="delete">
+        DELETE FROM user WHERE id = #{id}
+    </delete>
+   <!-- &lt;!&ndash; 批量添加用户 &ndash;&gt;
+    <insert id="addBatch" parameterType="java.util.List">
+        INSERT INTO user(username, password, nickname,address, phone, email)
+        VALUES
+        <foreach collection="userList" item="user" separator="," index="index">
+            (#{user.username},#{user.password},#{user.nickname},#{user.address},#{user.phone},#{user.email})
+        </foreach>
+    </insert>-->
+</mapper>

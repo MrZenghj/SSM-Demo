@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snipe.dao.FileMarkDao">
+
+    <!-- 查询文件是否上传过 -->
+    <select id="selectByMark" resultType="com.snipe.entity.FileMark">
+        SELECT fid,mark,reference FROM filemark WHERE mark=#{fileMark}
+    </select>
+
+    <!-- 插入已经上传过得文件标志-->
+    <insert id="insertMart" parameterType="com.snipe.entity.FileMark">
+        INSERT INTO filemark(mark,reference) VALUES(#{mark},#{reference})
+    </insert>
+</mapper>

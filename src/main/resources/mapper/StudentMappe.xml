@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snipe.dao.StudentDao">
+    <sql id="base_column">
+        id,sname,age,weight
+    </sql>
+    <!-- 查询所有 -->
+    <select id="getAll" resultType="com.snipe.entity.Student">
+        SELECT <include refid="base_column"></include> from student
+    </select>
+    <!--- 通过id查询学生 -->
+    <select id="getById" resultType="com.snipe.entity.Student">
+        SELECT <include refid="base_column"></include> from student WHERE id = #{id}
+    </select>
+    <!-- 通过 sname 查询学生 -->
+    <select id="findByName" resultType="com.snipe.entity.Student">
+        SELECT <include refid="base_column"></include> from student WHERE sname = #{sname}
+    </select>
+    <!-- 添加学生 -->
+    <insert id="save" parameterType="com.snipe.entity.Student">
+        INSERT INTO student(sname,age,weight)
+        VALUES (#{sname},#{age},#{weight})
+    </insert>
+    <!-- 更新学生 -->
+    <update id="update" parameterType="com.snipe.entity.Student">
+        UPDATE student SET sname=#{sname,jdbcType=VARCHAR},age=#{age},weight=#{weight}
+        WHERE  id = #{id}
+    </update>
+
+</mapper>
