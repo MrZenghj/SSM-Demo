@@ -80,10 +80,16 @@
       <version>5.1.37</version>
       <scope>runtime</scope>
     </dependency>
-    <dependency>
+    <!-- <dependency>
       <groupId>c3p0</groupId>
       <artifactId>c3p0</artifactId>
       <version>0.9.1.2</version>
+    </dependency>-->
+    <!-- 使用druid 数据源 -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.1.9</version>
     </dependency>
 
     <!-- DAO: MyBatis -->

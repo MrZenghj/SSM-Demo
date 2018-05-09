@@ -63,11 +63,32 @@ https://github.com/swagger-api/swagger-ui（github地址）
   * **第五步**：修改资源下的index.html代码中url  
 例如：url = "http://localhost:8080/SSM-Demo/api-docs"; // http://IP:端口/项目名/api-docs
 
+  * **第六步**：访问swagger url = http://localhost:8080/SSM-Demo/swagger/index.html
+
 3. 遇到的问题  
 * SpringMVC与Swagger整合后，在打开的ui页面提示：No operations defined in spec!，并没有显示编写的接口是什么原因  
 原因：出现这个问题主要是由于swagger-ui版本问题  
 tag v2.2.10 版本以下的才行，如果下载的静态资源版本大于2.2.10就会出现以上述问题。
 
-
-
 ### 关于异常处理的学习
+
+### 关于Druid学习
+1. 介绍和详解
+    https://www.cnblogs.com/niejunlei/p/5977895.html
+2. 基本步骤
+    * 第一步：maven引入jar
+    * 第二步：jdbc.properties配置
+    * 第三步：spring-mybati.xml中数据源配置
+    * 第四步：web.xml引入启用 Web 监控统计功能
+
+2. 遇到的问题  
+    
+* 数据库---> Access denied for user 'snipe'@'localhost' (using password: YES)  
+* 这个问题查看了博客，主要是由于计算机变量username引起的(JVM)。    
+解决方案  
+* 方案一：将properties文件中的username换成user或其他就字符串就可以成功获取连接访问数据库。  
+* 方案二：在Spring配置文件中修改成：<context:property-placeholder location="classpath:/jdbc.properties" system-properties-mode="FALLBACK / NEVER"/>  
+添加一个system-properties-mode属性    
+该属性有三个值：FALLBACK  默认值，不存在时覆盖    
+                NEVER　　 不覆盖
+　　　　　　　　OVERRIDE　覆盖
