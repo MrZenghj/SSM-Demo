@@ -302,6 +302,12 @@
     </dependency>
     <!-- swagger end -->
 
+    <!-- protobuf-java 依赖添加 -->
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <version>2.5.0</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>com-snipe</finalName>

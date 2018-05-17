@@ -92,3 +92,6 @@ tag v2.2.10 版本以下的才行，如果下载的静态资源版本大于2.2.1
 该属性有三个值：FALLBACK  默认值，不存在时覆盖    
                 NEVER　　 不覆盖
 　　　　　　　　OVERRIDE　覆盖
+
+### 关于protobuff学习
+博客：https://blog.csdn.net/antgan/article/details/52103966  
